@@ -15,7 +15,7 @@ public struct SplashCalculadora: View {
                 .onAppear{
                     Timer.scheduledTimer(withTimeInterval: 5, repeats: true){_ in
                         NavigationLink(destination: CalculadoraUI()){
-                            Text("Do Something")
+                            Text("hace algo")
                         }
                     }
                 }
