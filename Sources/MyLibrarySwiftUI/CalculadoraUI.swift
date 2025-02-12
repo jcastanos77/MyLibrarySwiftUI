@@ -10,14 +10,14 @@ import SwiftUI
 struct CalculadoraUI: View{
     
     var body: some View {
-        Text("Hello World")
+        VStack{
+            Image("calcuApp")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 200, height: 200)
+                .padding()
+            Text("Hello World")
+        }
        }
     
-}
-
-@available(iOS 13.0.0, *)
-struct ContentView_previewCalculadora: PreviewProvider {
-    static var previews: some View {
-        CalculadoraUI()
-    }
 }
