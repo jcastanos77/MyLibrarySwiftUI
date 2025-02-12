@@ -3,31 +3,34 @@
 
 import SwiftUI
 
-@available(iOS 13.0.0, *)
+@available(iOS 14.0.0, *)
 public struct SplashCalculadora: View {
     
     public init() {}
     
+    @State var pushView = false
+    @State var timeRemaining = 3
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
     public var body: some View {
-        @State var pushView = true
         
         NavigationView {
             Text("Calculadora SwiftUI").foregroundColor(.blue).bold()
                 .font(Font.system(size: 30))
-                .onAppear{
-                    print("entre 1")
-                    Timer.scheduledTimer(withTimeInterval: 5, repeats: false){_ in
-                        print("entre 2")
-                        
-                        NavigationLink(destination: CalculadoraUI(), isActive: $pushView) {
-                            
-                        }
+                .onReceive(timer){ _ in
+                    if self.timeRemaining > 0 {
+                        self.timeRemaining -= 1
+                    }else{
+                        pushView.toggle()
+                        self.timer.upstream.connect().cancel()
                     }
+                }.fullScreenCover(isPresented: $pushView) {
+                    CalculadoraUI()
                 }
         }}
 }
 
-@available(iOS 13.0.0, *)
+@available(iOS 14.0.0, *)
 struct ContentView_preview: PreviewProvider {
     static var previews: some View {
         SplashCalculadora()
