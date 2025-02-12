@@ -10,11 +10,7 @@ import SwiftUI
 struct CalculadoraUI: View{
     
     var body: some View {
-           NavigationView {
-               VStack {
-                   Text("Hello World")
-               }
-           }
+        Text("Hello World")
        }
     
 }
